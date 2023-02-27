@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Add Performance Input</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="employee">Employee ID:</label>
+    <select name="employee">
+      {% for employee in employee_list %}
+        <option value="{{ employee.employee_id }}">{{ employee.employee_id }} - {{employee.first_name}} {{employee.last_name}}</option>
+      {% endfor %}
+    </select>
+    <br><br>
+    <label for="performance_rating">Performance Rating:</label>
+    <select name="performance_rating">
+      <option value="Awesome">Awesome</option>
+      <option value="Great">Great</option>
+      <option value="Good">Good</option>
+      <option value="Needs Improvement">Needs Improvement</option>
+    </select>
+    <br><br>
+    <label for="sales_amount">Sales Amount:</label>
+    <input type="number" name="sales_amount" step="0.01" required>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <style>
+    form {
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"], select {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+{% endblock %}

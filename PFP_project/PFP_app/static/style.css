@@ -1,0 +1,43 @@
+/* CSS for the navigation bar */
+header nav {
+    background-color: #333;
+    color: #fff;
+}
+
+header nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+header nav li {
+    float: left;
+}
+
+header nav li a {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+header nav li a:hover {
+    background-color: #444;
+}
+
+/* CSS for the footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* CSS for the main content */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}

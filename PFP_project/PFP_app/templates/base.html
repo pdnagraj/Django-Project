@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block extra_head %}{% endblock %}
+    <style>
+        /* Global styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        main {
+            padding: 20px;
+        }
+        
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .welcome-message {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem;
+        }
+
+        .links a {
+            margin: 1rem;
+            padding: 0.5rem;
+            background-color: #0077b6;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.25rem;
+        }
+
+        .links a:hover {
+            background-color: #023e8a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/employees/">Employees List</a></li>
+                <li><a href="/employees_performance_list/">Employee Performance List</a></li>
+                <li><a href="/employees_performance_input_form/">Employee Performance Input</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% if request.path == '/' %}
+    <main>
+        <div class="welcome-message">
+            <h1>Welcome to the Staples Pay-For-Performance Program</h1>
+            <p>Please feel free to browse the links:</p>
+        </div>
+
+        <div class="links">
+            <a href="/employees/">Employees list - Showcases the list of all of the employees in the MySql Database</a>
+            <a href="/employees_performance_list/">Employee Performance List - Showcases the sales of each employee</a>
+            <a href="/employees_performance_input_form/">Employee Performance Input - Here you can do a post method to input a new performance</a>
+        </div>
+    {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 - Staples</p>
+    </footer>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

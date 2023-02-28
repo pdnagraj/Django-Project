@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from PFP_app.models import Employee
 from PFP_app.models import PerformanceInput
 from PFP_app.forms import PerformanceInputForm
@@ -49,3 +49,16 @@ def Performance_Input_view(request, *args, **kwargs):
 
 
 Performance_Input_view.http_method_names = ['get', 'post'] # Specify HTTP methods as GET and POST
+
+
+def Delete_Performance(request, performance_id):
+    performance = get_object_or_404(PerformanceInput, input_id=performance_id)
+    if request.method == 'DELETE':
+        performance.delete()
+        return JsonResponse({'success': True})
+    else:
+        return HttpResponseNotAllowed(['DELETE'])
+        
+Delete_Performance.http_method_names = ['delete'] # Specify HTTP method as DELETE
+
+

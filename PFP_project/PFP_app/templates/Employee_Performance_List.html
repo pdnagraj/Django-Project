@@ -1,42 +1,5 @@
 {% extends 'base.html' %}
 
-{% block extra_head %}
-    <style>
-         table {
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 1.2em;
-            min-width: 400px;
-            border-radius: 5px 5px 0 0;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        }
-
-        table th,
-        table td {
-            padding: 12px 15px;
-        }
-
-        table thead tr {
-            background-color: #009879;
-            color: #ffffff;
-            text-align: left;
-        }
-
-        table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-
-        table tbody tr:nth-of-type(even) {
-            background-color: #f3f3f3;
-        }
-
-        table tbody tr:last-of-type {
-            border-bottom: 2px solid #009879;
-        }
-    </style>
-{% endblock %}
-
 {% block content %}
     <h1>Performance Input List</h1>
     <table>
@@ -46,6 +9,7 @@
                 <th>Employee Name</th>
                 <th>Performance Rating</th>
                 <th>Sales Amount</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -55,8 +19,26 @@
                 <td>{{ performance.employee.first_name }} {{ performance.employee.last_name }}</td>
                 <td>{{ performance.performance_rating }}</td>
                 <td>{{ performance.sales_amount }}</td>
+                <td><button class="delete-performance-btn" data-input-id="{{ performance.input_id }}" data-csrf-token="{{ csrf_token }}">Delete</button></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    {% block scripts %}
+    {% load static %}
+    <script src="{% static 'js/delete_performance.js' %}"></script>
+    <script>
+        // Call the Delete_Performance() function here
+        const deleteButtons = document.querySelectorAll('.delete-performance-btn');
+        deleteButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const inputId = btn.getAttribute('data-input-id');
+                const csrfToken = btn.getAttribute('data-csrf-token');
+                Delete_Performance(inputId, csrfToken);
+            });
+        });
+
+    </script>
+    {% endblock %}
 {% endblock %}

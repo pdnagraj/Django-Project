@@ -1,7 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from PFP_app.models import Employee
-from PFP_app.models import PerformanceInput
+from PFP_app.models import Employee, PerformanceInput 
 from PFP_app.forms import PerformanceInputForm
 
 # Create your views here.
@@ -62,3 +61,10 @@ def Delete_Performance(request, performance_id):
 Delete_Performance.http_method_names = ['delete'] # Specify HTTP method as DELETE
 
 
+# Employees list view
+def Employee_Performance_Chart(request, *args, **kwargs):
+    employee_list = Employee.objects.all()
+    context = {'employee_list': employee_list}
+    return render(request, 'Employee_Performance_Chart.html', context)
+
+Employees_List_view.http_method_names = ['get'] # Specify HTTP method as GET

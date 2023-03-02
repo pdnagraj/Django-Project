@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Add Performance Input</h1>
+  <h1>Add Employee Performance Input</h1>
   <form method="POST">
     {% csrf_token %}
-    <label for="employee">Employee ID:</label>
+    <label for="employee">Employee:</label>
     <select name="employee">
       {% for employee in employee_list %}
         <option value="{{ employee.employee_id }}">{{ employee.employee_id }} - {{employee.first_name}} {{employee.last_name}}</option>

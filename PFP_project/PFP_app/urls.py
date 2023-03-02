@@ -11,7 +11,5 @@ urlpatterns = [
     path('employees/', Employees_List_view, name='employee_list'),
     path('employees_performance_list/', Performance_List_view, name='performance_list'),
     path('employees_performance_input_form/', Performance_Input_view, name='performance_input_form'),
-    path('delete_performance/<int:performance_id>/', Delete_Performance, name='delete_performance')
+    path('delete_performance/<int:performance_id>/', Delete_Performance, name='delete_performance'),
 ]
-
-#Employees_List_view
